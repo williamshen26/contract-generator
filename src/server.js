@@ -9,18 +9,19 @@ var tokenContractCreator = require("./contractCreators/tokenContractCreator.js")
 
 
 module.exports = {
-    start: function() {
+    start: function(port) {
+
+        app.get("/ping", function(request, response) {
+            response.status(200).send("hello world");
+        });
 
         app.post("/token", function(request, response) {
-
-            console.log(request.body);
 
             if(tokenContractCreator.validate(request)) {
 
                 requestValidator.validatePayment(request.body['txhash'], request.body['address'])
                     .then(function (valid) {
                        if (valid) {
-
                            tokenContractCreator.create(request)
                                .then(function(receipt) {
                                    response.status(200).send(receipt);
@@ -48,7 +49,7 @@ module.exports = {
 
         //Start the server and make it listen for connections on port 8080
 
-        app.listen(3000);
+        app.listen(port);
     }
 
 

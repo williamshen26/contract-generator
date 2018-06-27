@@ -8,7 +8,7 @@ var contractUtil = require("../utils/contract.util");
 module.exports = {
     validate: function (request) {
 
-        if(request.body['txhash'] && request.body['address']) {
+        if(request.body['txhash'] && request.body['address'] && request.body['form']) {
             if (web3.utils.isHex(request.body['txhash']) && web3.utils.isAddress(request.body['address'])) {
                 return true;
             }
