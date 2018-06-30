@@ -5,7 +5,7 @@ var Web3 = require("web3");
 var web3 = new Web3(global.web3Provider);
 
 module.exports = {
-    compile: function (code, contractName) {
+    compile: function (code, contractName, account) {
 
         return new Promise(function (resolve, reject) {
 
@@ -22,7 +22,7 @@ module.exports = {
                 data: '0x' + bytecode
             })
                 .then(function (gas) {
-                    web3.eth.getTransactionCount(global.mainAddress)
+                    web3.eth.getTransactionCount(account.account)
                         .then(function (nonce) {
                             console.log(nonce);
                             return web3.eth.accounts.signTransaction(
@@ -31,7 +31,7 @@ module.exports = {
                                     data: '0x' + bytecode,
                                     gas: gas
                                 },
-                                global.mainKey
+                                account.key
                             );
                         })
                         .then(function (signature) {

@@ -17,7 +17,7 @@ module.exports = {
         return false;
     },
 
-    create: function (request) {
+    create: function (request, account) {
         return new Promise(function (resolve, reject) {
             var form = request.body['form'];
 
@@ -35,7 +35,7 @@ module.exports = {
                 .replace(/\{\{DECIMALS\}\}/g, form['decimals'])
                 .replace(/\{\{CONTRACT_NAME\}\}/g, contractName);
 
-            compiler.compile(code, contractName)
+            compiler.compile(code, contractName, account)
                 .then(function(receipt) {
                     resolve(receipt);
                 }).catch (function(err) {
