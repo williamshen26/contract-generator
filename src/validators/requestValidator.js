@@ -9,7 +9,7 @@ module.exports = {
 
         return new Promise(function (resolve, reject) {
             web3.eth.getTransaction(txHash).then(function (tx) {
-                if (tx.from.toUpperCase() == fromAddress.toUpperCase() && tx.to.toUpperCase() == global.mainAddress.toUpperCase() && Number(tx.value) >= 10000000000000000) {
+                if (tx && tx.from.toUpperCase() == fromAddress.toUpperCase() && tx.to.toUpperCase() == global.mainAddress.toUpperCase() && Number(tx.value) >= 10000000000000000) {
                     resolve(true);
                 } else {
                     resolve(false);

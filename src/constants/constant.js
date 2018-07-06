@@ -5,8 +5,7 @@ var web3 = new Web3();
 var secureData = JSON.parse(fs.readFileSync('./properties/secure.json').toString());
 var data = JSON.parse(fs.readFileSync('./properties/data.json').toString());
 
-global.mainKey = secureData['mainKey'];
-global.mainAddress = web3.eth.accounts.privateKeyToAccount(global.mainKey).address;
+global.mainAddress = secureData['mainAddress'];
 global.web3Provider = data['web3Provider'];
 global.keyPool = secureData['keyPool'];
 

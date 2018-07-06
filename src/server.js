@@ -28,12 +28,12 @@ module.exports = {
                                            accountObservable.unsubscribe();
                                            tokenContractCreator.create(request, account)
                                                .then(function (receipt) {
-                                                   accountPool.freeKey(_account);
+                                                   accountPool.freeKey(account);
                                                    response.status(200).send(receipt);
                                                })
                                                .catch(function (error) {
                                                    console.error(error);
-                                                   accountPool.freeKey(_account);
+                                                   accountPool.freeKey(account);
                                                    response.status(500).send();
                                                });
                                        }
