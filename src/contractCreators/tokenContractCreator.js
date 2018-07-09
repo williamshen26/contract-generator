@@ -31,7 +31,7 @@ module.exports = {
                 .replace(/\{\{SYMBOL\}\}/g, form['symbol'].toUpperCase())
                 .replace(/\{\{ADDRESS\}\}/g, request.body['address'])
                 .replace(/\{\{NAME\}\}/g, form['name'])
-                .replace(/\{\{TOTAL_SUPPLY\}\}/g, contractUtil.toFixed(form['totalSupply']))
+                .replace(/\{\{TOTAL_SUPPLY\}\}/g, contractUtil.toFixed(form['totalSupply'] * Math.pow(10, form['decimals'])))
                 .replace(/\{\{DECIMALS\}\}/g, form['decimals'])
                 .replace(/\{\{CONTRACT_NAME\}\}/g, contractName);
 
